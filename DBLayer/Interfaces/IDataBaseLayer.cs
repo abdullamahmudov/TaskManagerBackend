@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DBLayer.Interfaces
 {
-    public interface IDataBaseLayer
+    public interface IDataBaseLayer : IDisposable
     {
         IUserLayer UserLayer { get; }
         ITaskLayer TaskLayer { get; }

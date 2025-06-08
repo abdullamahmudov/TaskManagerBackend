@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DBLayer.Interfaces
+namespace WebApi.Models.Responses
 {
-    public interface IDataBase : IDisposable
+    public class AddCommentResponse : AResponseBase<bool>
     {
     }
 }

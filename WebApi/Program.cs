@@ -1,4 +1,8 @@
 using DBLayer.Common;
+using TaskManagerBase.Implementations;
+using TaskManagerBase.Interfaces;
+using TaskManagerBase.Methods;
+using WebApi.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +12,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.InitiolizeSQLiteServices();
+builder.Services.AddScoped<ICripto, DefaultCripto>();
+builder.Services.AddSingleton<Cache>();
+builder.Services.AddScoped<IUserControll, UserControll>();
 
 var app = builder.Build();
 

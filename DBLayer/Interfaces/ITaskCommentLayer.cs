@@ -6,7 +6,7 @@ using TaskManagerBase.Models;
 
 namespace DBLayer.Interfaces
 {
-    public interface ITaskCommentLayer
+    public interface ITaskCommentLayer : IDisposable
     {
         Task<bool> AddComment(TaskComment comment);
         Task<bool> RemoveComment(Guid id);

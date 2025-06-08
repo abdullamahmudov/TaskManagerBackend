@@ -20,5 +20,28 @@ namespace DBLayer.Implementations.SQLite
             TaskLayer = taskLayer;
             CommentLayer = commentLayer;
         }
+
+        private bool _isDisposed;
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_isDisposed)
+            {
+                _isDisposed = true;
+
+                if (disposing)
+                {
+                    UserLayer.Dispose();
+                    TaskLayer.Dispose();
+                    CommentLayer.Dispose();
+                }
+            }
+        }
     }
 }

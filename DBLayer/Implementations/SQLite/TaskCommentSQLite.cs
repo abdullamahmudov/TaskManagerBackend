@@ -18,10 +18,22 @@ namespace DBLayer.Implementations.SQLite
             _logger = logger;
             _dbContext = _contextFactory.CreateDbContext();
         }
+        // public TaskCommentSQLite(ILogger<TaskCommentSQLite> logger, SQLiteDataBase dbContext)
+        // {
+        //     _logger = logger;
+        //     _dbContext = dbContext;
+        // }
         public async Task<bool> AddComment(TaskComment comment)
         {
             try
             {
+                var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == comment.CreatorId);
+                if (user is null) return false;
+                var task = await _dbContext.Tasks.FirstOrDefaultAsync(t => t.Id == comment.TaskId);
+                if (task is null) return false;
+                comment.Id = Guid.NewGuid();
+                comment.Creator = user;
+                comment.Task = task;
                 await _dbContext.Comments.AddAsync(comment);
                 _dbContext.SaveChanges();
                 return true;
@@ -52,6 +64,10 @@ namespace DBLayer.Implementations.SQLite
         {
             try
             {
+                var comment = await _dbContext.Comments.FirstOrDefaultAsync(c => c.Id == id);
+
+                if (comment is null) return false;
+
                 _dbContext.Comments.Remove(new TaskComment { Id = id });
                 _dbContext.SaveChanges();
                 return true;
@@ -60,6 +76,27 @@ namespace DBLayer.Implementations.SQLite
             {
                 _logger.LogError(null, ex);
                 return false;
+            }
+        }
+
+        private bool _isDisposed;
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_isDisposed)
+            {
+                _isDisposed = true;
+
+                if (disposing)
+                {
+                    _dbContext.Dispose();
+                }
             }
         }
     }

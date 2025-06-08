@@ -16,6 +16,13 @@ namespace DBLayer.Implementations.SQLite
 
         public SQLiteDataBase(DbContextOptions<SQLiteDataBase> options) : base(options)
         {
+            // Database.EnsureDeleted();
+            Database.EnsureCreated();
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().HasIndex(x => x.Login).IsUnique(true);
         }
     }
 }

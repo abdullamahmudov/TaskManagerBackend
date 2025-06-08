@@ -6,12 +6,12 @@ using TaskManagerBase.Models;
 
 namespace DBLayer.Interfaces
 {
-    public interface ITaskLayer
+    public interface ITaskLayer : IDisposable
     {
         Task<bool> AddTask(CRMTask task);
         Task<bool> RemoveTask(Guid id);
         Task<CRMTask?> GetTask(Guid id);
         Task<List<CRMTask>> GetTasks(TaskFilter? filter);
-        Task<bool> UpdateTask(Guid id, CRMTask task);
+        Task<CRMTask?> UpdateTask(Guid id, CRMTask task);
     }
 }

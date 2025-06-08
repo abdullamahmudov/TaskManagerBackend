@@ -6,7 +6,7 @@ using TaskManagerBase.Enums;
 
 namespace TaskManagerBase.Models
 {
-    public class TaskFilter
+    public struct TaskFilter
     {
         public DateTimeOffset? CreateDateFrom { get; private set; }
         public DateTimeOffset? CreateDateTo { get; private set; }

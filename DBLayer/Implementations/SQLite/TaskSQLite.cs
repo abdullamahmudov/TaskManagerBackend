@@ -18,10 +18,21 @@ namespace DBLayer.Implementations.SQLite
             _logger = logger;
             _dbContext = _contextFactory.CreateDbContext();
         }
+        // public TaskSQLite(ILogger<TaskSQLite> logger, SQLiteDataBase dbContext)
+        // {
+        //     _logger = logger;
+        //     _dbContext = dbContext;
+        // }
         public async Task<bool> AddTask(CRMTask task)
         {
             try
             {
+                var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Id == task.CreatorId);
+
+                if (user is null) return false;
+
+                task.Id = Guid.NewGuid();
+                task.Creator = user;
                 await _dbContext.Tasks.AddAsync(task);
                 _dbContext.SaveChanges();
                 return true;
@@ -139,7 +150,11 @@ namespace DBLayer.Implementations.SQLite
         {
             try
             {
-                _dbContext.Tasks.Remove(new CRMTask { Id = id });
+                var task = await _dbContext.Tasks.FirstOrDefaultAsync(t => t.Id == id);
+
+                if (task is null) return false;
+
+                _dbContext.Tasks.Remove(task);
                 _dbContext.SaveChanges();
                 return true;
             }
@@ -150,14 +165,14 @@ namespace DBLayer.Implementations.SQLite
             }
         }
 
-        public async Task<bool> UpdateTask(Guid id, CRMTask task)
+        public async Task<CRMTask?> UpdateTask(Guid id, CRMTask task)
         {
             try
             {
                 var oldTask = await _dbContext.Tasks.FirstOrDefaultAsync((t) => t.Id == id);
                 if (oldTask is null)
                 {
-                    return false;
+                    return null;
                 }
 
                 task.Id = id;
@@ -177,12 +192,33 @@ namespace DBLayer.Implementations.SQLite
                 task.Creator = oldTask.Creator;
                 _dbContext.Tasks.Update(task);
                 _dbContext.SaveChanges();
-                return true;
+                return task;
             }
             catch (System.Exception ex)
             {
                 _logger.LogError(null, ex);
-                return false;
+                return null;
+            }
+        }
+
+        private bool _isDisposed;
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_isDisposed)
+            {
+                _isDisposed = true;
+
+                if (disposing)
+                {
+                    _dbContext.Dispose();
+                }
             }
         }
     }

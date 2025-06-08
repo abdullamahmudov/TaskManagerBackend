@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DBLayer.Interfaces
+namespace WebApi.Models.Requests
 {
-    public interface IDataBase : IDisposable
+    public class GetCommentsRequest : AAuthKeyRequestBase<string>
     {
+        
     }
 }

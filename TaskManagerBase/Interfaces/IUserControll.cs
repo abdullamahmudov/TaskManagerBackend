@@ -7,10 +7,11 @@ using TaskManagerBase.Models;
 
 namespace TaskManagerBase.Interfaces
 {
-    public interface IUserControll
+    public interface IUserControll : IDisposable
     {
-        Task<bool> AddUser(RegistractionUser user);
-        Task<bool> RemoveUser(User user);
-        Task<User> AuthUser(LogInUser user);
+        Task<bool> RegistrationUser(RegistractionUser user);
+        Task<bool> RemoveUser(string id);
+        Task<User?> LogIn(LogInUser user);
+        Task<bool> CkeckAuth(string authKey);
     }
 }

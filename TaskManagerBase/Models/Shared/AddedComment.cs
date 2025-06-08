@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace TaskManagerBase.Models.Shared
 {
-    public class AddComment
+    public class AddedComment
     {
         public required string TaskId { get; set; }
         public required string Creator { get; set; }

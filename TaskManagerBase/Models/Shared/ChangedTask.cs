@@ -1,8 +1,8 @@
 ﻿using TaskManagerBase.Enums;
 
-namespace TaskManagerBase;
+namespace TaskManagerBase.Models.Shared;
 
-public class ChangeTask
+public class ChangedTask
 {
     public required string Id { get; set; }
     public CRMTaskStatus? Status { get; set; }

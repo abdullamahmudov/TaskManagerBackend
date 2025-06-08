@@ -11,10 +11,10 @@ namespace DBLayer.Common
 {
     public static class InitiolizeSQLite
     {
-        private const string InitiolizeSQLiteDirectoryEnvironment = "INITIOLIZE_SQLITE_DIRECTORY";
+        private const string INITIOLIZE_SQLITE_DIRECTORY_ENVIRONMENT = "INITIOLIZE_SQLITE_DIRECTORY";
         public static void InitiolizeSQLiteServices(this IServiceCollection services)
         {
-            var directory = Environment.GetEnvironmentVariable(InitiolizeSQLiteDirectoryEnvironment);
+            var directory = Environment.GetEnvironmentVariable(INITIOLIZE_SQLITE_DIRECTORY_ENVIRONMENT);
             if (directory is null || !Directory.Exists(directory))
             {
                 throw new Exception("Incorrected \"INITIOLIZE_SQLITE_DIRECTORY\" value!");
