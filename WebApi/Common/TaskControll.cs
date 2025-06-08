@@ -12,10 +12,10 @@ namespace WebApi.Common
 {
     public class TaskControll : ITaskControll
     {
-        private readonly ILogger<UserControll> _logger;
+        private readonly ILogger<TaskControll> _logger;
         private readonly IDataBaseLayer _dataBaseLayer;
         private readonly Cache _cache;
-        public TaskControll(ILogger<UserControll> logger, IDataBaseLayer dataBaseLayer, Cache cache)
+        public TaskControll(ILogger<TaskControll> logger, IDataBaseLayer dataBaseLayer, Cache cache)
         {
             _logger = logger;
             _dataBaseLayer = dataBaseLayer;
@@ -42,14 +42,9 @@ namespace WebApi.Common
             });
         }
 
-        public async Task<List<CRMTask>> GetTasks(TaskFilter filter)
+        public async Task<List<CRMTask>> GetTasks(TaskFilter? filter)
         {
-            if (!_cache.TasksByFilter.TryGetValue(filter, out var cRMTasks))
-            {
-                cRMTasks = await _dataBaseLayer.TaskLayer.GetTasks(filter);
-                _cache.TasksByFilter.Add(filter, cRMTasks);
-            }
-            return cRMTasks;
+            return await _dataBaseLayer.TaskLayer.GetTasks(filter);
         }
 
         public async Task<bool> RemoveTask(string id)

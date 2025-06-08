@@ -6,7 +6,7 @@ using TaskManagerBase.Models;
 
 namespace WebApi.Models.Requests
 {
-    public class GetTasksRequest : AAuthKeyRequestBase<TaskFilter>
+    public class GetTasksRequest : AAuthKeyRequestBase<TaskFilter?>
     {
     }
 }

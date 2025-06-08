@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace TaskManagerBase.Models.Shared
 {
-    public class AddedComment
+    public class AddedTaskComment
     {
         public required string TaskId { get; set; }
-        public required string Creator { get; set; }
+        public required string CreatorId { get; set; }
         public required string Text { get; set; }
     }
 }

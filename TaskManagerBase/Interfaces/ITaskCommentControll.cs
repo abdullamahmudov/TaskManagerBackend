@@ -9,7 +9,7 @@ namespace TaskManagerBase.Interfaces
 {
     public interface ITaskCommentControll
     {
-        Task<bool> AddComment(AddedComment addedComment);
+        Task<bool> AddComment(AddedTaskComment addedComment);
         Task<bool> RemoveComment(string id);
         Task<List<TaskComment>> GetComments(string taskId);
     }

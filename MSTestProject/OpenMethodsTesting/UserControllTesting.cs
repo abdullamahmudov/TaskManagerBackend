@@ -18,7 +18,7 @@ namespace MSTestProject.OpenMethodsTesting
     [TestClass]
     public class UserControllTesting
     {
-        private User _createdUser;
+        private User? _createdUser;
         private string _login { get => _createdUser is null ? "TestUser" : string.Concat("TestUser_", Guid.NewGuid().ToString()); }
         private string _password = "TestPassword";
 
@@ -31,6 +31,8 @@ namespace MSTestProject.OpenMethodsTesting
         [TestMethod]
         public async Task RegistrationLogInUserTest()
         {
+            Assert.IsNotNull(_login);
+            Assert.IsNotNull(_password);
             using (var dbConnector = new DBConnector())
             {
                 _createdUser = await dbConnector.UserControll.LogIn(new LogInUser { Login = _login, Password = _password });
@@ -45,6 +47,8 @@ namespace MSTestProject.OpenMethodsTesting
             {
                 if (_createdUser is null)
                 {
+                    Assert.IsNotNull(_login);
+                    Assert.IsNotNull(_password);
                     _createdUser = await dbConnector.UserControll.LogIn(new LogInUser { Login = _login, Password = _password });
                     Assert.IsNotNull(_createdUser);
                 }

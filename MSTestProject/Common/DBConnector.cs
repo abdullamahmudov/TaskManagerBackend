@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DBLayer.Implementations.SQLite;
+using k8s.KubeConfigModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;
@@ -15,8 +16,10 @@ namespace MSTestProject.Common
     public class DBConnector : IDisposable
     {
         private const string INITIOLIZE_SQLITE_DIRECTORY_ENVIRONMENT = "D:\\Work\\Custom\\TaskManager\\DB";
-        
-        public IUserControll UserControll { get; private set; }
+
+        public readonly IUserControll UserControll;
+        public readonly ITaskControll TaskControll;
+        public readonly ITaskCommentControll TaskCommentControll;
 
         public DBConnector()
         {
@@ -34,6 +37,8 @@ namespace MSTestProject.Common
             var commentLayer = new TaskCommentSQLite(loggerFactory.CreateLogger<TaskCommentSQLite>(), dbContextFactory);
             var dataBaseLayer = new SQLiteDBLayer(userLayer, taskLayer, commentLayer);
             UserControll = new UserControll(loggerFactory.CreateLogger<UserControll>(), dataBaseLayer, new DefaultCripto(), new TaskManagerBase.Methods.Cache());
+            TaskControll = new TaskControll(loggerFactory.CreateLogger<TaskControll>(), dataBaseLayer, new TaskManagerBase.Methods.Cache());
+            TaskCommentControll = new TaskCommentControll(loggerFactory.CreateLogger<TaskCommentControll>(), dataBaseLayer, new TaskManagerBase.Methods.Cache());
         }
 
         private bool _isDisposed;

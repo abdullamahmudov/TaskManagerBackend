@@ -32,7 +32,9 @@ namespace DBLayer.Implementations.SQLite
                 var task = await _dbContext.Tasks.FirstOrDefaultAsync(t => t.Id == comment.TaskId);
                 if (task is null) return false;
                 comment.Id = Guid.NewGuid();
+                comment.CreatorId = user.Id;
                 comment.Creator = user;
+                comment.TaskId = task.Id;
                 comment.Task = task;
                 await _dbContext.Comments.AddAsync(comment);
                 _dbContext.SaveChanges();
@@ -68,7 +70,7 @@ namespace DBLayer.Implementations.SQLite
 
                 if (comment is null) return false;
 
-                _dbContext.Comments.Remove(new TaskComment { Id = id });
+                _dbContext.Comments.Remove(comment);
                 _dbContext.SaveChanges();
                 return true;
             }

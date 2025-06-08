@@ -16,7 +16,7 @@ namespace DBLayer.Implementations.SQLite
 
         public SQLiteDataBase(DbContextOptions<SQLiteDataBase> options) : base(options)
         {
-            // Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 

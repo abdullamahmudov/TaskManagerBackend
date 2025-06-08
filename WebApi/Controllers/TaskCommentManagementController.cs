@@ -26,9 +26,9 @@ namespace WebApi.Controllers
 
         [HttpPut]
         [Route("AddComment")]
-        [ProducesResponseType<AddCommentResponse>(StatusCodes.Status200OK)]
+        [ProducesResponseType<AddTaskCommentResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddComment(AddCommentRequest request)
+        public async Task<IActionResult> AddComment(AddTaskCommentRequest request)
         {
             if (!await _userControll.CkeckAuth(request.AuthKey))
             {

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WebApi.Models.Responses
 {
-    public class AddCommentResponse : AResponseBase<bool>
+    public class AddTaskCommentResponse : AResponseBase<bool>
     {
     }
 }

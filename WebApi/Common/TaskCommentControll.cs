@@ -12,21 +12,21 @@ namespace WebApi.Common
 {
     public class TaskCommentControll : ITaskCommentControll
     {
-        private readonly ILogger<UserControll> _logger;
+        private readonly ILogger<TaskCommentControll> _logger;
         private readonly IDataBaseLayer _dataBaseLayer;
         private readonly Cache _cache;
-        public TaskCommentControll(ILogger<UserControll> logger, IDataBaseLayer dataBaseLayer, Cache cache)
+        public TaskCommentControll(ILogger<TaskCommentControll> logger, IDataBaseLayer dataBaseLayer, Cache cache)
         {
             _logger = logger;
             _dataBaseLayer = dataBaseLayer;
             _cache = cache;
         }
-        public async Task<bool> AddComment(AddedComment addedComment)
+        public async Task<bool> AddComment(AddedTaskComment addedComment)
         {
             return await _dataBaseLayer.CommentLayer.AddComment(new TaskComment
             {
                 TaskId = new Guid(addedComment.TaskId),
-                CreatorId = new Guid(addedComment.TaskId),
+                CreatorId = new Guid(addedComment.CreatorId),
                 Text = addedComment.Text,
             });
         }

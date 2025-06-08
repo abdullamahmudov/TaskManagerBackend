@@ -12,6 +12,6 @@ namespace TaskManagerBase.Interfaces
         Task<bool> AddTask(AddedTask task);
         Task<bool> RemoveTask(string id);
         Task<CRMTask?> ChangeTask(ChangedTask task);
-        Task<List<CRMTask>> GetTasks(TaskFilter filter);
+        Task<List<CRMTask>> GetTasks(TaskFilter? filter);
     }
 }

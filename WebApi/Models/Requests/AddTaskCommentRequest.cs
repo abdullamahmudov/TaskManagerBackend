@@ -6,7 +6,7 @@ using TaskManagerBase.Models.Shared;
 
 namespace WebApi.Models.Requests
 {
-    public class AddCommentRequest : AAuthKeyRequestBase<AddedComment>
+    public class AddTaskCommentRequest : AAuthKeyRequestBase<AddedTaskComment>
     {
     }
 }
