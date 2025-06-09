@@ -28,7 +28,7 @@ namespace WebApi.Controllers
         [Route("AddTask")]
         [ProducesResponseType<AddTaskResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddTask(AddTaskRequest request)
+        public async Task<ActionResult<AddTaskResponse>> AddTask(AddTaskRequest request)
         {
             if (!await _userControll.CkeckAuth(request.AuthKey))
             {
@@ -45,7 +45,7 @@ namespace WebApi.Controllers
         [Route("ChangeTask")]
         [ProducesResponseType<ChangeTaskResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> ChangeTask(ChangeTaskRequest request)
+        public async Task<ActionResult<ChangeTaskResponse>> ChangeTask(ChangeTaskRequest request)
         {
             if (!await _userControll.CkeckAuth(request.AuthKey))
             {
@@ -63,7 +63,7 @@ namespace WebApi.Controllers
         [Route("GetTasks")]
         [ProducesResponseType<GetTasksResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetTasks(GetTasksRequest request)
+        public async Task<ActionResult<GetTasksResponse>> GetTasks(GetTasksRequest request)
         {
             if (!await _userControll.CkeckAuth(request.AuthKey))
             {
@@ -81,7 +81,7 @@ namespace WebApi.Controllers
         [Route("RemoveTask")]
         [ProducesResponseType<RemoveTaskResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> RemoveTask(RemovTaskRequest request)
+        public async Task<ActionResult<RemoveTaskResponse>> RemoveTask(RemovTaskRequest request)
         {
             if (!await _userControll.CkeckAuth(request.AuthKey))
             {

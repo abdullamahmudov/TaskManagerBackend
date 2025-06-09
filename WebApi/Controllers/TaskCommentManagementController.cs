@@ -28,7 +28,7 @@ namespace WebApi.Controllers
         [Route("AddComment")]
         [ProducesResponseType<AddTaskCommentResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddComment(AddTaskCommentRequest request)
+        public async Task<ActionResult<AddTaskResponse>> AddComment(AddTaskCommentRequest request)
         {
             if (!await _userControll.CkeckAuth(request.AuthKey))
             {
@@ -45,7 +45,7 @@ namespace WebApi.Controllers
         [Route("GetComments")]
         [ProducesResponseType<GetCommentsResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetComments(GetCommentsRequest request)
+        public async Task<ActionResult<GetCommentsResponse>> GetComments(GetCommentsRequest request)
         {
             if (!await _userControll.CkeckAuth(request.AuthKey))
             {
