@@ -23,22 +23,32 @@ namespace WebApi.Controllers
             _userControll = userControll;
         }
 
+        /// <summary>
+        /// Регистраия пользователя
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("Registration")]
         [ProducesResponseType<RegistrationResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> Registration(RegistrationRequest request)
+        public async Task<ActionResult<RegistrationResponse>> Registration(RegistrationRequest request)
         {
             if (!await _userControll.RegistrationUser(request.Data))
                 return BadRequest();
             return new RegistrationResponse { Data = true };
         }
 
+        /// <summary>
+        /// Авторизация пользователя
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("LogIn")]
         [ProducesResponseType<LogInResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> LogIn(LogInRequest request)
+        public async Task<ActionResult<LogInResponse>> LogIn(LogInRequest request)
         {
             var user = await _userControll.LogIn(request.Data);
             if (user is null)

@@ -8,16 +8,40 @@ namespace TaskManagerBase.Models
 {
     public struct TaskFilter
     {
+        /// <summary>
+        /// Дата создания От
+        /// </summary>
         public DateTimeOffset? CreateDateFrom { get; set; }
+        /// <summary>
+        /// Дата создания До
+        /// </summary>
         public DateTimeOffset? CreateDateTo { get; set; }
 
+        /// <summary>
+        /// Дата завршения От
+        /// </summary>
         public DateTimeOffset? CompliteDateFrom { get; set; }
+        /// <summary>
+        /// Дата завршения До
+        /// </summary>
         public DateTimeOffset? CompliteDateTo { get; set; }
 
+        /// <summary>
+        /// Плановая дата завршения От
+        /// </summary>
         public DateTimeOffset? PlanCompliteDateFrom { get; set; }
+        /// <summary>
+        /// Плановая дата завршения До
+        /// </summary>
         public DateTimeOffset? PlanCompliteDateTo { get; set; }
 
+        /// <summary>
+        /// Идентификатор пользователя
+        /// </summary>
         public Guid? UserId { get; set; }
+        /// <summary>
+        /// Статусы
+        /// </summary>
         public CRMTaskStatus? Status { get; set; }
 
         public static bool operator ==(TaskFilter ob1, TaskFilter obj2) =>

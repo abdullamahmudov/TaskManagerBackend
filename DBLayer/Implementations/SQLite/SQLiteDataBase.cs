@@ -8,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DBLayer.Implementations.SQLite
 {
+    /// <summary>
+    /// Контекст для взаимодействия с СУБД SQLite
+    /// </summary>
     public class SQLiteDataBase : DbContext, IDataBase
     {
         public DbSet<User> Users { get; set; }

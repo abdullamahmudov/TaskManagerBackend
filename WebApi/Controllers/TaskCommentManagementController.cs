@@ -24,11 +24,16 @@ namespace WebApi.Controllers
             _userControll = userControll;
         }
 
+        /// <summary>
+        /// Добавление комментария
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("AddComment")]
         [ProducesResponseType<AddTaskCommentResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddComment(AddTaskCommentRequest request)
+        public async Task<ActionResult<AddTaskResponse>> AddComment(AddTaskCommentRequest request)
         {
             if (!await _userControll.CkeckAuth(request.AuthKey))
             {
@@ -41,11 +46,16 @@ namespace WebApi.Controllers
             return new AddTaskResponse { Data = true };
         }
 
+        /// <summary>
+        /// Получение комментариев
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("GetComments")]
         [ProducesResponseType<GetCommentsResponse>(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetComments(GetCommentsRequest request)
+        public async Task<ActionResult<GetCommentsResponse>> GetComments(GetCommentsRequest request)
         {
             if (!await _userControll.CkeckAuth(request.AuthKey))
             {

@@ -6,8 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Models.Responses
 {
-    public class AResponseBase<TData> : ActionResult
+    public class AResponseBase<TData>
     {
+        /// <summary>
+        /// Данные результата запроса
+        /// </summary>
         public required TData Data { get; set; }
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DBLayer.Implementations.SQLite
 {
+    /// <inheritdoc/>
     public class UserSQLite : IUserLayer
     {
         private readonly ILogger<UserSQLite> _logger;
@@ -126,7 +127,7 @@ namespace DBLayer.Implementations.SQLite
                 var user = await _dbContext.Users.FirstOrDefaultAsync(user => user.Id == id);
 
                 if (user is null) return false;
-                
+
                 _dbContext.Users.Remove(user);
                 _dbContext.SaveChanges();
                 return true;

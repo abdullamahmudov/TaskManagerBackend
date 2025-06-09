@@ -7,6 +7,5 @@ namespace WebApi.Models.Responses
 {
     public class RemoveTaskResponse : AResponseBase<bool>
     {
-        
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DBLayer.Implementations.SQLite
 {
+    /// <inheritdoc/>
     public class TaskSQLite : ITaskLayer
     {
         private readonly ILogger<TaskSQLite> _logger;
@@ -118,7 +119,7 @@ namespace DBLayer.Implementations.SQLite
 
                     return true;
                 };
-                
+
                 return new List<CRMTask>(_dbContext.Tasks.Where(queryFilter));
             }
             catch (System.Exception ex)

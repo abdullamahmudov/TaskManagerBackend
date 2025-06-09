@@ -16,6 +16,8 @@ builder.Services.AddScoped<ICripto, DefaultCripto>();
 builder.Services.AddSingleton<Cache>();
 builder.Services.AddScoped<IUserControll, UserControll>();
 
+builder.Services.AddCors();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -31,10 +33,15 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+app.UseCors(builder =>
+            builder
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .SetIsOriginAllowed(origin => true)
+                .AllowCredentials()
+                //.AllowAnyOrigin()
+            );
+
 
 app.UseAuthentication();
 app.MapControllers();

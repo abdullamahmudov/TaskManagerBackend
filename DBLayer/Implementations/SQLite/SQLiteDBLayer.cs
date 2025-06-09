@@ -6,6 +6,7 @@ using DBLayer.Interfaces;
 
 namespace DBLayer.Implementations.SQLite
 {
+    /// <inheritdoc/>
     public class SQLiteDBLayer : IDataBaseLayer
     {
         public IUserLayer UserLayer { get; private set; }

@@ -7,7 +7,13 @@ namespace WebApi.Models.Requests
 {
     public abstract class AAuthKeyRequestBase<TData>
     {
+        /// <summary>
+        /// Ключ авторизации
+        /// </summary>
         public required string AuthKey { get; set; }
+        /// <summary>
+        /// Данные запроса
+        /// </summary>
         public required TData Data { get; set; }
     }
 }
