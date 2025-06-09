@@ -11,7 +11,14 @@ namespace DBLayer.Common
 {
     public static class InitiolizeSQLite
     {
+        /// <summary>
+        /// Переменная окружения - путь к БД
+        /// </summary>
         private const string INITIOLIZE_SQLITE_DIRECTORY_ENVIRONMENT = "INITIOLIZE_SQLITE_DIRECTORY";
+        /// <summary>
+        /// Инициализация сервиса на базе SQLite
+        /// </summary>
+        /// <param name="services"></param>
         public static void InitiolizeSQLiteServices(this IServiceCollection services)
         {
             var directory = Environment.GetEnvironmentVariable(INITIOLIZE_SQLITE_DIRECTORY_ENVIRONMENT);

@@ -7,6 +7,9 @@ using TaskManagerBase.Models.Shared;
 
 namespace TaskManagerBase.Interfaces
 {
+    /// <summary>
+    /// Компонент для контроля комментариев задач
+    /// </summary>
     public interface ITaskCommentControll
     {
         Task<bool> AddComment(AddedTaskComment addedComment);

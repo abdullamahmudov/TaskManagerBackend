@@ -6,6 +6,7 @@ using TaskManagerBase.Interfaces;
 
 namespace TaskManagerBase.Implementations
 {
+    /// <inheritdoc/>
     public class DefaultCripto : ICripto
     {
         public string Compute(string value) => value;

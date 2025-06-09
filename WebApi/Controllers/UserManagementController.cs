@@ -23,6 +23,11 @@ namespace WebApi.Controllers
             _userControll = userControll;
         }
 
+        /// <summary>
+        /// Регистраия пользователя
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("Registration")]
         [ProducesResponseType<RegistrationResponse>(StatusCodes.Status200OK)]
@@ -34,6 +39,11 @@ namespace WebApi.Controllers
             return new RegistrationResponse { Data = true };
         }
 
+        /// <summary>
+        /// Авторизация пользователя
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("LogIn")]
         [ProducesResponseType<LogInResponse>(StatusCodes.Status200OK)]

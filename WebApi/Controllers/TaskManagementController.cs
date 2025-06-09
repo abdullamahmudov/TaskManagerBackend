@@ -24,6 +24,11 @@ namespace WebApi.Controllers
             _userControll = userControll;
         }
 
+        /// <summary>
+        /// Добавление задачи
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("AddTask")]
         [ProducesResponseType<AddTaskResponse>(StatusCodes.Status200OK)]
@@ -41,6 +46,11 @@ namespace WebApi.Controllers
             return new AddTaskResponse { Data = true };
         }
 
+        /// <summary>
+        /// Изменение задачи
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("ChangeTask")]
         [ProducesResponseType<ChangeTaskResponse>(StatusCodes.Status200OK)]
@@ -59,6 +69,11 @@ namespace WebApi.Controllers
             return new ChangeTaskResponse { Data = task };
         }
 
+        /// <summary>
+        /// Получение задач
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("GetTasks")]
         [ProducesResponseType<GetTasksResponse>(StatusCodes.Status200OK)]
@@ -76,7 +91,12 @@ namespace WebApi.Controllers
             }
             return new GetTasksResponse { Data = task };
         }
-        
+
+        /// <summary>
+        /// Удаление задачи
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("RemoveTask")]
         [ProducesResponseType<RemoveTaskResponse>(StatusCodes.Status200OK)]

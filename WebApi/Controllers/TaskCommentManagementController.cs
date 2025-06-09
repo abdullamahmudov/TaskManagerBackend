@@ -24,6 +24,11 @@ namespace WebApi.Controllers
             _userControll = userControll;
         }
 
+        /// <summary>
+        /// Добавление комментария
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("AddComment")]
         [ProducesResponseType<AddTaskCommentResponse>(StatusCodes.Status200OK)]
@@ -41,6 +46,11 @@ namespace WebApi.Controllers
             return new AddTaskResponse { Data = true };
         }
 
+        /// <summary>
+        /// Получение комментариев
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("GetComments")]
         [ProducesResponseType<GetCommentsResponse>(StatusCodes.Status200OK)]

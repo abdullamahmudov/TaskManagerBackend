@@ -9,6 +9,7 @@ using TaskManagerBase.Models;
 
 namespace DBLayer.Implementations.SQLite
 {
+    /// <inheritdoc/>
     public class TaskCommentSQLite : ITaskCommentLayer
     {
         private readonly ILogger<TaskCommentSQLite> _logger;

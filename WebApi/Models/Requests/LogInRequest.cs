@@ -8,6 +8,9 @@ namespace WebApi.Models.Requests
 {
     public class LogInRequest
     {
+        /// <summary>
+        /// Данные запроса
+        /// </summary>
         public required LogInUser Data { get; set; }
     }
 }

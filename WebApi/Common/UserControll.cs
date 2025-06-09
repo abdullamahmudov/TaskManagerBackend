@@ -10,6 +10,7 @@ using TaskManagerBase.Models.Shared;
 
 namespace WebApi.Common
 {
+    /// <inheritdoc/>
     public class UserControll : IUserControll
     {
         private readonly ILogger<UserControll> _logger;

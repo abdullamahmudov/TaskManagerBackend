@@ -7,6 +7,9 @@ namespace TaskManagerBase.Models.Shared
 {
     public class RemovedTask
     {
+        /// <summary>
+        /// Идентификатор задачи
+        /// </summary>
         public required string Id { get; set; }
     }
 }

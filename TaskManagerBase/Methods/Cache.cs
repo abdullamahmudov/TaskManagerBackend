@@ -6,6 +6,9 @@ using TaskManagerBase.Models;
 
 namespace TaskManagerBase.Methods
 {
+    /// <summary>
+    /// Кеша данных
+    /// </summary>
     public class Cache
     {
         public Dictionary<string, User> UsersByLogin { get; private set; } = new Dictionary<string, User>();

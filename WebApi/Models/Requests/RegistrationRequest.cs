@@ -8,6 +8,9 @@ namespace WebApi.Models.Requests
 {
     public class RegistrationRequest
     {
+        /// <summary>
+        /// Данные запроса
+        /// </summary>
         public required RegistractionUser Data { get; set; }
     }
 }
